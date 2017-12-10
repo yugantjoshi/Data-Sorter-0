@@ -167,7 +167,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %s \n", t+1, input[t].color);
+                printf("%d) %s \n", t+1, input[t].movie_title);
         }
 }
 int findColumnIndex(const char* value){
@@ -315,12 +315,12 @@ int main(int argc, char **argv) {
                 exit(1);
         }
 
-        char *line=(char*)malloc(sizeof(char)*500);//this will hold the current line till its parsed
-        char *second_line=(char*)malloc(sizeof(char)*500);
+        char *line=(char*)malloc(sizeof(char)*3000);//this will hold the current line till its parsed
+        char *second_line=(char*)malloc(sizeof(char)*3000);
 
 
-        fgets(line,500,stdin);//this is holding the header
-        fgets(line,500,stdin);
+        fgets(line,3000,stdin);//this is holding the header
+        fgets(line,3000,stdin);
         strcpy(second_line,line);
         //printf("line to compare is %s\n",second_line);
         int i;
@@ -367,7 +367,7 @@ int main(int argc, char **argv) {
 
                                 case 2:
                                         // printf("this is director token %s\n",token);
-                                        strncpy(input[s].director_name, token, 50);
+                                        strncpy(input[s].director_name, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is director name %s\n",input[s].director_name);
                                         break;
@@ -397,7 +397,7 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 7:
-                                        strncpy(input[s].actor_2_name, token, 50);
+                                        strncpy(input[s].actor_2_name, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is actor 2 name %s\n",input[s].actor_2_name);
                                         break;
@@ -415,13 +415,13 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 10:
-                                        strncpy(input[s].genres, token, 50);
+                                        strncpy(input[s].genres, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is genre %s\n",input[s].genres);
                                         break;
 
                                 case 11:
-                                        strncpy(input[s].actor_1_name, token, 50);
+                                        strncpy(input[s].actor_1_name, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is actor 1 name %s\n",input[s].actor_1_name);
                                         break;
@@ -448,12 +448,10 @@ int main(int argc, char **argv) {
                                                 i++;
 
 
-
-
                                         }
 
 
-                                        strncpy(input[s].movie_title, token, 50);
+                                        strncpy(input[s].movie_title, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is movie title %s\n",input[s].movie_title);
                                         break;
@@ -471,7 +469,7 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 15:
-                                        strncpy(input[s].actor_3_name, token, 50);
+                                        strncpy(input[s].actor_3_name, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is actor 3 name %s\n",input[s].actor_3_name);
                                         break;
@@ -483,13 +481,13 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 17:
-                                        strncpy(input[s].plot_keywords, token, 50);
+                                        strncpy(input[s].plot_keywords, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is plot keywords %s\n",input[s].plot_keywords);
                                         break;
 
                                 case 18:
-                                        strncpy(input[s].movie_imdb_link, token, 50);
+                                        strncpy(input[s].movie_imdb_link, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is imbd link %s\n",input[s].movie_imdb_link);
                                         break;
@@ -501,19 +499,19 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 20:
-                                        strncpy(input[s].language, token, 50);
+                                        strncpy(input[s].language, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is language %s\n",input[s].language);
                                         break;
 
                                 case 21:
-                                        strncpy(input[s].country, token, 50);
+                                        strncpy(input[s].country, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is language %s\n",input[s].country);
                                         break;
 
                                 case 22:
-                                        strncpy(input[s].content_rating, token, 50);
+                                        strncpy(input[s].content_rating, token, 300);
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is content rating %s\n",input[s].content_rating);
                                         break;
@@ -579,7 +577,7 @@ int main(int argc, char **argv) {
                 input[s].movie_facebook_likes=atoi(token);
                 memset(token, 0, 300);//empties token array
 
-                fgets(line,500,stdin);
+                fgets(line,3000,stdin);
 
                 //printf("line is %s\n",line);
                 if(strcmp(line,second_line)==0) {
