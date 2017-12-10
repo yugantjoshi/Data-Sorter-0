@@ -9,6 +9,8 @@ void parseExtra(char *line, int s){
         int j=0;
         char token [300];
         int commas =0;
+        char *moveboolean= (char*)malloc(sizeof(char)*10);
+        strcpy(moveboolean,"f");
         if(line[i]==',') {
                 commas++;
                 if(commas ==1)
@@ -86,33 +88,42 @@ void parseExtra(char *line, int s){
                         break;
 
                 case 12:
+
+                        //Currently on a comma
+                        if(isdigit(line[i+1])) {
+                                //Continue onto the next category
+                                strncpy(input[s].movie_title, token, 300);
+                                memset(token, 0, 300);
+                        }
+                        else if(!isdigit(line[i+1])) {
+                                if(line[i]== ',') {
+                                        token[j]=',';
+                                        i++;
+                                        j++;
+                                }
+                                while(moveboolean[0]=='f') {
+
+                                        if(line[i]== ',') {
+                                                if(isdigit(line[i+1])) {
+                                                        strncpy(input[s].movie_title, token, 300);
+                                                        memset(token, 0, 300);
+                                                        strcpy(moveboolean,"t");
+
+                                                }
+                                        }
+                                        token[j]=line[i];
+                                        i++;
+                                        j++;
+                                }
+                        }
+/*
                         while(!isdigit(line[i+1])) {
 
 
 
                                 if(line[i]== ',') {
-                                        //printf("i should make it in here after second I \n");
-                                        token[j]=' ';
-                                }else if(line[i]== '"') {
-                                        token[j]=' ';
-
-                                }
-
-                                else{
-                                        token[j]=line[i];
-                                }
-
-
-                                j++;
-                                i++;
-
-
-                        }
-
-
-                        strncpy(input[s].movie_title, token, 300);
-                        memset(token, 0, 300);//empties token array
-                        //printf("this is movie title %s\n",input[s].movie_title);
+                                        //printf("i should make it in he
+ */
                         break;
 
                 case 13:
@@ -194,15 +205,15 @@ void parseExtra(char *line, int s){
                         break;
 
                 case 26:
-                        input[s].imdb_score=atoi(token);
+                        input[s].imdb_score=atof(token);
                         memset(token, 0, 300);//empties token array
-                        //printf("this is imdb %i\n",input[s].imdb_score);
+                        printf("this is imdb %f\n",input[s].imdb_score);
                         break;
 
                 case 27:
-                        input[s].aspect_ratio=atoi(token);
+                        input[s].aspect_ratio=atof(token);
                         memset(token, 0, 300);//empties token array
-                        //printf("this is aspect ratio %i\n",input[s].aspect_ratio);
+                        printf("this is aspect ratio %f\n",input[s].aspect_ratio);
                         break;
 
 
@@ -265,8 +276,8 @@ void print_csv_file(Records** finalInput, int arraySize){
                 fprintf(file, "%d,", (*finalInput)[i].budget);
                 fprintf(file, "%d,", (*finalInput)[i].title_year);
                 fprintf(file, "%d,", (*finalInput)[i].actor_2_facebook_likes);
-                fprintf(file, "%d,", (*finalInput)[i].imdb_score);
-                fprintf(file, "%d,", (*finalInput)[i].aspect_ratio);
+                fprintf(file, "%9.2f,", (*finalInput)[i].imdb_score);
+                fprintf(file, "%9.2f,", (*finalInput)[i].aspect_ratio);
                 fprintf(file, "%d\n", (*finalInput)[i].movie_facebook_likes);
                 i++;
         }
@@ -557,7 +568,8 @@ int main(int argc, char **argv) {
 
         char *line=(char*)malloc(sizeof(char)*3000);//this will hold the current line till its parsed
         char *second_line=(char*)malloc(sizeof(char)*3000);
-
+        char *moveboolean= (char*)malloc(sizeof(char)*10);
+        strcpy(moveboolean,"f");
 
         fgets(line,3000,stdin);//this is holding the header
         fgets(line,3000,stdin);
@@ -666,33 +678,32 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 12:
-                                        while(!isdigit(line[i+1])) {
-
-
-
-                                                if(line[i]== ',') {
-                                                        //printf("i should make it in here after second I \n");
-                                                        token[j]=' ';
-                                                }else if(line[i]== '"') {
-                                                        token[j]=' ';
-
-                                                }
-
-                                                else{
-                                                        token[j]=line[i];
-                                                }
-
-
-                                                j++;
-                                                i++;
-
-
+                                        if(isdigit(line[i+1])) {
+                                                //Continue onto the next category
+                                                strncpy(input[s].movie_title, token, 300);
+                                                memset(token, 0, 300);
                                         }
+                                        else if(!isdigit(line[i+1])) {
+                                                if(line[i]== ',') {
+                                                        token[j]=',';
+                                                        i++;
+                                                        j++;
+                                                }
+                                                while(moveboolean[0]=='f') {
 
+                                                        if(line[i]== ',') {
+                                                                if(isdigit(line[i+1])) {
+                                                                        strncpy(input[s].movie_title, token, 300);
+                                                                        memset(token, 0, 300);
+                                                                        strcpy(moveboolean,"t");
 
-                                        strncpy(input[s].movie_title, token, 300);
-                                        memset(token, 0, 300);//empties token array
-                                        //printf("this is movie title %s\n",input[s].movie_title);
+                                                                }
+                                                        }
+                                                        token[j]=line[i];
+                                                        i++;
+                                                        j++;
+                                                }
+                                        }
                                         break;
 
                                 case 13:
@@ -774,15 +785,15 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 26:
-                                        input[s].imdb_score=atoi(token);
+                                        input[s].imdb_score=atof(token);
                                         memset(token, 0, 300);//empties token array
-                                        //printf("this is imdb %i\n",input[s].imdb_score);
+                                        //printf("this is imdb %9.2f\n",input[s].imdb_score);
                                         break;
 
                                 case 27:
-                                        input[s].aspect_ratio=atoi(token);
+                                        input[s].aspect_ratio=atof(token);
                                         memset(token, 0, 300);//empties token array
-                                        //printf("this is aspect ratio %i\n",input[s].aspect_ratio);
+                                        //printf("this is aspect ratio %9.2f\n",input[s].aspect_ratio);
                                         break;
 
 
@@ -834,9 +845,6 @@ int main(int argc, char **argv) {
                                 parseExtra(temp, s);
                         }
                 }
-
-
-
                 strcpy(second_line,line);
 
 
