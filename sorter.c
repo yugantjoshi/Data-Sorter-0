@@ -101,8 +101,8 @@ void parseExtra(char *line, int s){
                                         i++;
                                         j++;
                                 }
-                                while(moveboolean[0]=='f') {
-
+                                while(strcmp(moveboolean,"f")==0) {
+                                        printf("got into moveboolean");
                                         if(line[i]== ',') {
                                                 if(isdigit(line[i+1])) {
                                                         strncpy(input[s].movie_title, token, 300);
@@ -242,7 +242,7 @@ void parseExtra(char *line, int s){
                 i++;
 
         }
-        printf("S after: %d\n", s);
+        //printf("S after: %d\n", s);
 }
 
 void print_csv_file(Records** finalInput, int arraySize){
@@ -263,6 +263,7 @@ void print_csv_file(Records** finalInput, int arraySize){
                 fprintf(file, "%s,", (*finalInput)[i].genres);
                 fprintf(file, "%s,", (*finalInput)[i].actor_1_name);
                 fprintf(file, "%s,", (*finalInput)[i].movie_title);
+                printf("movie title: %s\n", (*finalInput)[i].movie_title);
                 fprintf(file, "%d,", (*finalInput)[i].num_voted_users);
                 fprintf(file, "%d,", (*finalInput)[i].cast_total_facebook_likes);
                 fprintf(file, "%s,", (*finalInput)[i].actor_3_name);
@@ -690,20 +691,25 @@ int main(int argc, char **argv) {
                                                         j++;
                                                 }
                                                 while(moveboolean[0]=='f') {
-
+                                                        //printf("got into moveboolen\n");
                                                         if(line[i]== ',') {
                                                                 if(isdigit(line[i+1])) {
+                                                                        //printf("TOK is token%s\n",token );
                                                                         strncpy(input[s].movie_title, token, 300);
+                                                                        //printf("Movie Title: %s\n", input[s].movie_title);
                                                                         memset(token, 0, 300);
+                                                                        //printf("toki %s\n",token );
                                                                         strcpy(moveboolean,"t");
 
                                                                 }
                                                         }
                                                         token[j]=line[i];
+                                                        //printf("this is token%s\n",token );
                                                         i++;
                                                         j++;
                                                 }
                                         }
+                                        memset(token, 0, 300);
                                         break;
 
                                 case 13:
@@ -841,7 +847,7 @@ int main(int argc, char **argv) {
                                 //call method
                                 strcpy(boolean,"f");
                                 s++;
-                                printf("S before: %d\n", s);
+                                //printf("S before: %d\n", s);
                                 parseExtra(temp, s);
                         }
                 }
