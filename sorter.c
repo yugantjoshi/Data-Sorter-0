@@ -167,7 +167,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                //printf("%d) %s \n", t+1, input[t].num_critic_for_reviews);
+                printf("%d) %d \n", t+1, input[t].num_critic_for_reviews);
         }
 }
 int findColumnIndex(const char* value){
