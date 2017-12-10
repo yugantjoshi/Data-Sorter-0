@@ -22,7 +22,7 @@ void merge(Records** arr, int l, int m, int r, char * data_type, const char* par
         j = 0;
         k = l;
 
-
+        //printf("dataType %s\n", data_type);
         if(strcmp(data_type,"int")==0 ||    strcmp(data_type,"double")==0  ) {
 
 
@@ -648,15 +648,9 @@ void merge(Records** arr, int l, int m, int r, char * data_type, const char* par
 
         }
 
-
-
-
-
-
-
         if(strcmp(data_type,"string")==0) {
                 if(strcmp(param,"color")==0 ) {
-
+                        //printf("i made it here\n");
                         while (i < n1 && j < n2)
                         {
 

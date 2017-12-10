@@ -46,7 +46,7 @@ char* findColumnType(const char* value){
         //printf("findColumnType value %s\n", value);
 
         if(strcmp(value, "color") == 0) {
-                strncpy(data_type, "int", 10);
+                strncpy(data_type, "string", 10);
                 //data_type = 'int';
                 return data_type;
         }
@@ -167,7 +167,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %s \n", t+1, input[t].movie_title);
+                printf("%d) %s \n", t+1, input[t].color);
         }
 }
 int findColumnIndex(const char* value){
