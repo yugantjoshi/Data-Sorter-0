@@ -167,7 +167,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %d \n", t+1, input[t].num_critic_for_reviews);
+                printf("%d) %s \n", t+1, input[t].color);
         }
 }
 int findColumnIndex(const char* value){
@@ -352,14 +352,18 @@ int main(int argc, char **argv) {
 
                         if(line[i]==',') {
                                 commas++;
+                                if(commas ==1)
+                                {
+                                        if(line[0]== 'C') {
+                                                strcpy(input[s].color, "Color");
+                                        }else if(line[1]== 'B' ) {
+                                                strcpy(input[s].color, "Black and White");
+                                        }else{
+                                                strcpy(input[s].color, " ");
+                                        }
+                                }
                                 switch (commas) {
-                                case 1:
 
-                                        //printf("this is color token %s\n",token);
-                                        strncpy(input[s].color, token, 50);
-                                        memset(token, 0, 300);//empties token array
-                                        //  printf("this is color %s\n",input[s].color);
-                                        break;
 
                                 case 2:
                                         // printf("this is director token %s\n",token);
