@@ -127,6 +127,10 @@ char* findColumnType(const char* value){
                 strncpy(data_type, "string", 10);
                 return data_type;
         }
+        else if(strcmp(value, "country") == 0) {
+                strncpy(data_type, "string", 10);
+                return data_type;
+        }
         else if(strcmp(value, "content_rating") == 0) {
                 strncpy(data_type, "int", 10);
                 return data_type;
@@ -167,7 +171,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %s \n", t+1, input[t].color);
+                printf("%d) %s \n", t+1, input[t].country);
         }
 }
 int findColumnIndex(const char* value){
@@ -241,6 +245,10 @@ int findColumnIndex(const char* value){
 
                 return 19;
         }
+        else if(strcmp(value, "country") == 0) {
+
+                return 19;
+        }
         else if(strcmp(value, "content_rating") == 0) {
 
                 return 20;
@@ -266,7 +274,7 @@ int findColumnIndex(const char* value){
                 return 26;
         }
         else{
-                printf("WRONG INPUT_ABORT\n");
+                //printf("WRONG INPUT_ABORT\n");
                 // data_type = "invalid";
                 return -1;
         }
