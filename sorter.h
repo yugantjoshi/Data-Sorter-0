@@ -36,8 +36,8 @@ char content_rating[50];
 int budget;
 int title_year;
 int actor_2_facebook_likes;
-int imdb_score;
-int aspect_ratio;
+double imdb_score;
+double aspect_ratio;
 int movie_facebook_likes;
 
 }Records;

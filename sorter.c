@@ -132,7 +132,7 @@ char* findColumnType(const char* value){
                 return data_type;
         }
         else if(strcmp(value, "content_rating") == 0) {
-                strncpy(data_type, "int", 10);
+                strncpy(data_type, "string", 10);
                 return data_type;
         }
         else if(strcmp(value, "budget") == 0) {
@@ -148,7 +148,7 @@ char* findColumnType(const char* value){
                 return data_type;
         }
         else if(strcmp(value, "imdb_score") == 0) {
-                strncpy(data_type, "int", 10);
+                strncpy(data_type, "double", 10);
                 return data_type;
         }
         else if(strcmp(value, "aspect_ratio") == 0) {
@@ -171,7 +171,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %s \n", t+1, input[t].country);
+                printf("%d) %d \n", t+1, input[t].imdb_score);
         }
 }
 int findColumnIndex(const char* value){

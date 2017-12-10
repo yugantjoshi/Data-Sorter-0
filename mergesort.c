@@ -1075,7 +1075,7 @@ void merge(Records** arr, int l, int m, int r, char * data_type, const char* par
 
 
                 if(strcmp(param,"content_rating")==0 ) {
-
+                        //printf("sorting content_rating\n");
                         while (i < n1 && j < n2)
                         {
 
