@@ -88,8 +88,7 @@ void parseExtra(char *line, int s){
                         break;
 
                 case 12:
-
-                        //Currently on a comma
+                        printf("case token%s\n",token );
                         if(isdigit(line[i+1])) {
                                 //Continue onto the next category
                                 strncpy(input[s].movie_title, token, 300);
@@ -97,33 +96,37 @@ void parseExtra(char *line, int s){
                         }
                         else if(!isdigit(line[i+1])) {
                                 if(line[i]== ',') {
-                                        token[j]=',';
+                                        token[j]=' ';
                                         i++;
                                         j++;
                                 }
-                                while(strcmp(moveboolean,"f")==0) {
-                                        printf("got into moveboolean");
+                                while(moveboolean[0]=='f') {
+                                        //printf("got into moveboolen\n");
                                         if(line[i]== ',') {
                                                 if(isdigit(line[i+1])) {
+                                                        printf("TOK is token%s\n",token );
                                                         strncpy(input[s].movie_title, token, 300);
+                                                        //printf("Movie Title: %s\n", input[s].movie_title);
                                                         memset(token, 0, 300);
+                                                        //printf("toki %s\n",token );
                                                         strcpy(moveboolean,"t");
 
                                                 }
                                         }
-                                        token[j]=line[i];
+                                        if(line[i]== ',') {
+                                                token[j]=' ';
+                                        }else{
+                                                token[j]=line[i];
+
+                                        }
+
+                                        //printf("this is token%s\n",token );
                                         i++;
                                         j++;
                                 }
                         }
-/*
-                        while(!isdigit(line[i+1])) {
-
-
-
-                                if(line[i]== ',') {
-                                        //printf("i should make it in he
- */
+                        memset(token, 0, 300);
+                        commas=12;
                         break;
 
                 case 13:
@@ -416,7 +419,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %s \n", t+1, input[t].movie_title);
+                printf("%d) %d \n", t+1, input[t].num_voted_users);
         }
 }
 int findColumnIndex(const char* value){
@@ -686,7 +689,7 @@ int main(int argc, char **argv) {
                                         }
                                         else if(!isdigit(line[i+1])) {
                                                 if(line[i]== ',') {
-                                                        token[j]=',';
+                                                        token[j]=' ';
                                                         i++;
                                                         j++;
                                                 }
@@ -703,7 +706,13 @@ int main(int argc, char **argv) {
 
                                                                 }
                                                         }
-                                                        token[j]=line[i];
+                                                        if(line[i]== ',') {
+                                                                token[j]=' ';
+                                                        }else{
+                                                                token[j]=line[i];
+
+                                                        }
+
                                                         //printf("this is token%s\n",token );
                                                         i++;
                                                         j++;
