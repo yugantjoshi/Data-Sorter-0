@@ -68,7 +68,7 @@ void merge(Records** arr, int l, int m, int r, char * data_type, const char* par
 
 
                 if(strcmp(param,"num_critic_for_reviews")==0 ) {
-                        printf("num_crtis");
+
                         while (i < n1 && j < n2)
                         {
                                 if (L[i].num_critic_for_reviews <= R[j].num_critic_for_reviews)

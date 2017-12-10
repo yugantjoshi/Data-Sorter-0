@@ -167,7 +167,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %s \n", t+1, input[t].director_name);
+                //printf("%d) %s \n", t+1, input[t].num_critic_for_reviews);
         }
 }
 int findColumnIndex(const char* value){
@@ -552,7 +552,8 @@ int main(int argc, char **argv) {
                                 i++;
 
 
-                        }else{
+                        }
+                        else{
 
                                 if(line[i]=='a'||line[i]=='A'||line[i]=='b'||line[i]=='B' || line[i]=='c'||line[i]=='C'||line[i]=='d'||line[i]=='D'||line[i]=='e'||line[i]=='E'||
                                    line[i]=='f'||line[i]=='F'||line[i]=='g'||line[i]=='G' || line[i]=='h'||line[i]=='H'||line[i]=='i'||line[i]=='I'||line[i]=='j'||line[i]=='J'||
@@ -586,16 +587,12 @@ int main(int argc, char **argv) {
 
                 strcpy(second_line,line);
 
-                k++;
-                if(k==12) {
-                        exit(1);
-                }
 
                 s++;
 
         }
 
-        printf("i made it past storing\n");
+        //printf("i made it past storing\n");
 
         const char *param = argv[2];
         int indexToSortOn = findColumnIndex(param);
@@ -604,9 +601,9 @@ int main(int argc, char **argv) {
 
         free(line);
         int arraySize = s;
-        printf("\n\n**UNSORTED**\n");
-        printRecord(input, s);
-        printf("**Printed**\n");
+        /*printf("**UNSORTED**\n");
+           printRecord(input, s);
+           printf("**Printed**\n");*/
         mergeSort(&input,0,s-1,data_type,param);
         printf("\n\n**SORTED**\n");
         printRecord(input, s);
