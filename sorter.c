@@ -171,7 +171,7 @@ void printRecord(Records* input, int s){
         int arraySize = s;
         int t=0;
         for(t=0; t<arraySize; t++) {
-                printf("%d) %d \n", t+1, input[t].imdb_score);
+                printf("%d) %s \n", t+1, input[t].movie_title);
         }
 }
 int findColumnIndex(const char* value){
@@ -611,13 +611,14 @@ int main(int argc, char **argv) {
 
         free(line);
         int arraySize = s;
-        /*printf("**UNSORTED**\n");
-           printRecord(input, s);
-           printf("**Printed**\n");*/
+        printf("**UNSORTED**\n");
+        printRecord(input, s);
+        printf("**Printed**\n");
         mergeSort(&input,0,s-1,data_type,param);
         printf("\n\n**SORTED**\n");
         printRecord(input, s);
         printf("**Printed**\n");
+        printf("Line 6000: %s\n", input[6000].director_name);
         print_csv_file(&input, arraySize);
 
 
