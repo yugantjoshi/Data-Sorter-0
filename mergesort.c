@@ -1146,13 +1146,7 @@ void mergeSort(Records ** input, int l, int r, char* data_type,const char* param
 
                 merge(input, l, m, r, data_type,param);
         }
-
 }
-
-
-
-
-
 /*
    void printArray(int A[], int size)
    {
@@ -1162,11 +1156,6 @@ void mergeSort(Records ** input, int l, int r, char* data_type,const char* param
         printf("%d ", A[i]);
     printf("\n");
    }
-
-
-
-
-
    int main()
    {
 

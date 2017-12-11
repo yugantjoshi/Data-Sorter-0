@@ -1,16 +1,23 @@
 #ifndef sorter_h
 #define sorter_h
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <math.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include<stdbool.h>
+#include<string.h>
+#include<ctype.h>
+#include<math.h>
+/*****
+*
+*	Define structures and function prototypes for your sorter
+*
+*
+*
+******/
 
+//Suggestion: define a struct that mirrors a record (row) of the data set
 
 typedef struct Records{
+
 char color[50];
 char director_name[50];
 int num_critic_for_reviews;
@@ -36,8 +43,8 @@ char content_rating[50];
 int budget;
 int title_year;
 int actor_2_facebook_likes;
-float imdb_score;
-float aspect_ratio;
+int imdb_score;
+int aspect_ratio;
 int movie_facebook_likes;
 
 }Records;

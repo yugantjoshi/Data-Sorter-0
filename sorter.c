@@ -88,45 +88,74 @@ void parseExtra(char *line, int s){
                         break;
 
                 case 12:
-                        printf("case token%s\n",token );
+                        strcpy(moveboolean,"f");
+                        //printf("this is current toke %s\n",token);
+
                         if(isdigit(line[i+1])) {
-                                //Continue onto the next category
+                                //this has been tested and works great
+
                                 strncpy(input[s].movie_title, token, 300);
                                 memset(token, 0, 300);
-                        }
-                        else if(!isdigit(line[i+1])) {
-                                if(line[i]== ',') {
-                                        token[j]=' ';
-                                        i++;
-                                        j++;
-                                }
+                        }else if(!isdigit(line[i+1])) {
+                                //printf("the token is %s\n",token);
+
+                                token[j]=' ';
+                                //printf("two should make it here %s\n",token);
+                                i++;
+                                j++;
+
+
                                 while(moveboolean[0]=='f') {
+                                        //printf("the token is %s\n",token);
+
                                         //printf("got into moveboolen\n");
-                                        if(line[i]== ',') {
+                                        if(line[i]==',') {                //this is an issue
+
+
+                                                token[j]=' ';
                                                 if(isdigit(line[i+1])) {
-                                                        printf("TOK is token%s\n",token );
+
+                                                        //printf("TOK is token%s\n",token );
                                                         strncpy(input[s].movie_title, token, 300);
-                                                        //printf("Movie Title: %s\n", input[s].movie_title);
+                                                        //printf("Movie Title YUP: %s\n", input[s].movie_title);
                                                         memset(token, 0, 300);
                                                         //printf("toki %s\n",token );
                                                         strcpy(moveboolean,"t");
+                                                        i--;
 
                                                 }
-                                        }
-                                        if(line[i]== ',') {
-                                                token[j]=' ';
                                         }else{
-                                                token[j]=line[i];
+
+                                                if(line[i]=='a'||line[i]=='A'||line[i]=='b'||line[i]=='B' || line[i]=='c'||line[i]=='C'||line[i]=='d'||line[i]=='D'||line[i]=='e'||line[i]=='E'||
+                                                   line[i]=='f'||line[i]=='F'||line[i]=='g'||line[i]=='G' || line[i]=='h'||line[i]=='H'||line[i]=='i'||line[i]=='I'||line[i]=='j'||line[i]=='J'||
+                                                   line[i]=='k'||line[i]=='K'||line[i]=='l'||line[i]=='L' || line[i]=='m'||line[i]=='M'||line[i]=='n'||line[i]=='N'||line[i]=='o'||line[i]=='O'||
+                                                   line[i]=='p'||line[i]=='P'||line[i]=='q'||line[i]=='Q' || line[i]=='r'||line[i]=='R'||line[i]=='s'||line[i]=='S'||line[i]=='t'||line[i]=='T'||
+                                                   line[i]=='u'||line[i]=='U'||line[i]=='v'||line[i]=='V' || line[i]=='w'||line[i]=='W'||line[i]=='x'||line[i]=='X'||line[i]=='y'||line[i]=='Y'||
+                                                   line[i]=='z'||line[i]=='Z'||line[i]==' '||line[i]=='?'||line[i]=='_'||line[i]=='-'||line[i]=='.'||line[i]=='/'||line[i]=='|'||line[i]=='?'||
+                                                   line[i]=='1'||line[i]=='2'||line[i]=='3'||line[i]=='4'||line[i]=='5'||line[i]=='6'||line[i]=='7'||line[i]=='8'||line[i]=='9'||line[i]=='0'
+                                                   ) {
+
+                                                        token[j]=line[i];
+                                                        // printf("this is token %s\n",token);
+                                                        j++;
+                                                }
+
+
+
+
 
                                         }
 
                                         //printf("this is token%s\n",token );
                                         i++;
-                                        j++;
+
                                 }
+
                         }
                         memset(token, 0, 300);
                         commas=12;
+
+                        break;
                         break;
 
                 case 13:
@@ -266,7 +295,7 @@ void print_csv_file(Records** finalInput, int arraySize){
                 fprintf(file, "%s,", (*finalInput)[i].genres);
                 fprintf(file, "%s,", (*finalInput)[i].actor_1_name);
                 fprintf(file, "%s,", (*finalInput)[i].movie_title);
-                printf("movie title: %s\n", (*finalInput)[i].movie_title);
+                //printf("movie title: %s\n", (*finalInput)[i].movie_title);
                 fprintf(file, "%d,", (*finalInput)[i].num_voted_users);
                 fprintf(file, "%d,", (*finalInput)[i].cast_total_facebook_likes);
                 fprintf(file, "%s,", (*finalInput)[i].actor_3_name);
@@ -682,43 +711,73 @@ int main(int argc, char **argv) {
                                         break;
 
                                 case 12:
+                                        strcpy(moveboolean,"f");
+                                        //printf("this is current toke %s\n",token);
+
                                         if(isdigit(line[i+1])) {
-                                                //Continue onto the next category
+                                                //this has been tested and works great
+
                                                 strncpy(input[s].movie_title, token, 300);
                                                 memset(token, 0, 300);
-                                        }
-                                        else if(!isdigit(line[i+1])) {
-                                                if(line[i]== ',') {
-                                                        token[j]=' ';
-                                                        i++;
-                                                        j++;
-                                                }
+                                        }else if(!isdigit(line[i+1])) {
+                                                // printf("the token is %s\n",token);
+
+                                                token[j]=' ';
+                                                //printf("two should make it here %s\n",token);
+                                                i++;
+                                                j++;
+
+
                                                 while(moveboolean[0]=='f') {
+                                                        //printf("the token is %s\n",token);
+
                                                         //printf("got into moveboolen\n");
-                                                        if(line[i]== ',') {
+                                                        if(line[i]==',') {//this is an issue
+
+
+                                                                token[j]=' ';
                                                                 if(isdigit(line[i+1])) {
+
                                                                         //printf("TOK is token%s\n",token );
                                                                         strncpy(input[s].movie_title, token, 300);
-                                                                        //printf("Movie Title: %s\n", input[s].movie_title);
+                                                                        //printf("Movie Title YUP: %s\n", input[s].movie_title);
                                                                         memset(token, 0, 300);
                                                                         //printf("toki %s\n",token );
                                                                         strcpy(moveboolean,"t");
+                                                                        i--;
 
                                                                 }
-                                                        }
-                                                        if(line[i]== ',') {
-                                                                token[j]=' ';
                                                         }else{
-                                                                token[j]=line[i];
+
+                                                                if(line[i]=='a'||line[i]=='A'||line[i]=='b'||line[i]=='B' || line[i]=='c'||line[i]=='C'||line[i]=='d'||line[i]=='D'||line[i]=='e'||line[i]=='E'||
+                                                                   line[i]=='f'||line[i]=='F'||line[i]=='g'||line[i]=='G' || line[i]=='h'||line[i]=='H'||line[i]=='i'||line[i]=='I'||line[i]=='j'||line[i]=='J'||
+                                                                   line[i]=='k'||line[i]=='K'||line[i]=='l'||line[i]=='L' || line[i]=='m'||line[i]=='M'||line[i]=='n'||line[i]=='N'||line[i]=='o'||line[i]=='O'||
+                                                                   line[i]=='p'||line[i]=='P'||line[i]=='q'||line[i]=='Q' || line[i]=='r'||line[i]=='R'||line[i]=='s'||line[i]=='S'||line[i]=='t'||line[i]=='T'||
+                                                                   line[i]=='u'||line[i]=='U'||line[i]=='v'||line[i]=='V' || line[i]=='w'||line[i]=='W'||line[i]=='x'||line[i]=='X'||line[i]=='y'||line[i]=='Y'||
+                                                                   line[i]=='z'||line[i]=='Z'||line[i]==' '||line[i]=='?'||line[i]=='_'||line[i]=='-'||line[i]=='.'||line[i]=='/'||line[i]=='|'||line[i]=='?'||
+                                                                   line[i]=='1'||line[i]=='2'||line[i]=='3'||line[i]=='4'||line[i]=='5'||line[i]=='6'||line[i]=='7'||line[i]=='8'||line[i]=='9'||line[i]=='0'
+                                                                   ) {
+
+                                                                        token[j]=line[i];
+                                                                        // printf("this is token %s\n",token);
+                                                                        j++;
+                                                                }
+
+
+
+
 
                                                         }
 
                                                         //printf("this is token%s\n",token );
                                                         i++;
-                                                        j++;
+
                                                 }
+
                                         }
                                         memset(token, 0, 300);
+                                        commas=12;
+
                                         break;
 
                                 case 13:
@@ -810,10 +869,6 @@ int main(int argc, char **argv) {
                                         memset(token, 0, 300);//empties token array
                                         //printf("this is aspect ratio %9.2f\n",input[s].aspect_ratio);
                                         break;
-
-
-
-
                                 }
                                 j=0;
                                 i++;
@@ -861,14 +916,8 @@ int main(int argc, char **argv) {
                         }
                 }
                 strcpy(second_line,line);
-
-
                 s++;
-
         }
-
-        //printf("i made it past storing\n");
-
         const char *param = argv[2];
         int indexToSortOn = findColumnIndex(param);
 
@@ -876,15 +925,14 @@ int main(int argc, char **argv) {
 
         free(line);
         int arraySize = s;
-        printf("**UNSORTED**\n");
-        printRecord(input, s);
-        printf("**Printed**\n");
+        //printf("**UNSORTED**\n");
+        //printRecord(input, s);
+        //printf("**Printed**\n");
         mergeSort(&input,0,s-1,data_type,param);
-        printf("\n\n**SORTED**\n");
-        printRecord(input, s);
-        printf("**Printed**\n");
+        //printf("\n\n**SORTED**\n");
+        //printRecord(input, s);
+        //printf("**Printed**\n");
         print_csv_file(&input, arraySize);
-
 
         return 0;
 }
